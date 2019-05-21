@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  integration:
+    build: 
+      context: .
+      dockerfile: Dockerfile.integration
+    environment:
+      - API_URL=http://web:5000
+    entrypoint: dotnet test
+    depends_on:
+      - web
+  web:
+    build: .
+    ports: 
+      - 5000:5000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    entrypoint: dotnet /app/TodoService.dll
+ 
