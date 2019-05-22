@@ -22,7 +22,7 @@ namespace TodoService.IntegrationTests
         [Fact]
         public async void should_add_a_post()
         {
-            var todo = new TodoModel{ Checked = false, Text = "Test Text" };
+            var todo = new TodoModel{ Id = "1234", Checked = false, Description = "Test Text" };
             
             using(HttpClient client = new HttpClient())
             {
@@ -33,7 +33,7 @@ namespace TodoService.IntegrationTests
                 var actualModel = JsonConvert.DeserializeObject<TodoModel>(await result.Content.ReadAsStringAsync());
 
                 actualModel.Id.ShouldBe(expectedModel.Id);
-                actualModel.Text.ShouldBe(expectedModel.Text);
+                actualModel.Description.ShouldBe(expectedModel.Description);
             }
 
         }

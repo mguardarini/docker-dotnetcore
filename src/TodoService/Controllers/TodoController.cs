@@ -19,7 +19,7 @@ namespace TodoService.Controllers
             {
                 Checked = model.Checked,
                 Id = model.Id,
-                Text = model.Text
+                Description = model.Description
             };
         }
 
@@ -30,7 +30,7 @@ namespace TodoService.Controllers
             {
                 Checked = false,
                 Id = "1234",
-                Text = "Mauro"
+                Description = "Mauro"
             };
         }
     }

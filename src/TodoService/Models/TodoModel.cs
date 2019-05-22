@@ -4,8 +4,8 @@ namespace TodoService.Models
 {
     public class TodoModel
     {
-        [JsonProperty("text")]
-        public string Text { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
         [JsonProperty("id")]
         public string Id { get; set; }
