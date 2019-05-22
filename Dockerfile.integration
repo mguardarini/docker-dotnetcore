@@ -1,4 +1,3 @@
-# /Dockerfile.integration
 FROM microsoft/dotnet:2.1-sdk as builder
 COPY . /app
 WORKDIR /app/test/TodoService.IntegrationTests
