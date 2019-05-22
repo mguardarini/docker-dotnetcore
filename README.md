@@ -23,64 +23,10 @@ Com o intuito de garantir que os testes não estão sofrendo interferência do a
 Existem alguns arquivos docker necessários para preparar o cenário para os nossos testes de integração e são eles: 
 
 1.  **Dockerfile**: Será utilizado para criar e publicar o  conteúdo do serviço e copiar o conteúdo publicado em um container.
-
-FROM microsoft/dotnet:2.1-sdk as builder
-
-COPY . /code
-
-WORKDIR /code/src/TodoService
-
-RUN dotnet restore 
-
-RUN dotnet publish -c Release -o publish
-
-FROM microsoft/dotnet:2.1-runtime
-
-COPY --from=builder /code/src/TodoService/publish /app
-
-WORKDIR /app
-
-ENV ASPNETCORE_URLS="http://*:5000"
-
-EXPOSE 5000
-
-ENTRYPOINT [ "dotnet", "/app/TodoService.dll" ]
-
 2. **Dockerfile.integration**: Será utilizado para criar e restaurar o projeto de teste de integração, preparando-o para executar os testes. 
-
-FROM microsoft/dotnet:2.1-sdk as builder
-
-COPY . /app
-
-WORKDIR /app/test/TodoService.IntegrationTests
-
-RUN dotnet restore
 
 3. **docker-compose-integration.xml**: Será utilizado para manter o serviço Todo e executar nossos testes de integração consumindo o serviço:
 
-:
+Para executar basta clonar o repositorio e executar o arquivo .bat (initialize.bat)
 
-version: '3'
-   
-    services:
-         
-    integration:
-    
-    build: 
-      context: .
-      dockerfile: Dockerfile.integration
-    environment:
-      - API_URL=http://web:5000
-    entrypoint: dotnet test
-    depends_on:
-      - web
-  web:
-    build: .
-    ports: 
-      - 5000:5000
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    entrypoint: dotnet /app/TodoService.dll
- 
-
-O exemplo funcional está disponivel no link abaixo no github: 
+Após realizar esse processo o projeto começara a criar o container, copiar o projeto, restaurar as depedências e executar o teste.
