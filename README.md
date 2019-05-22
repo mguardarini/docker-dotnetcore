@@ -27,6 +27,15 @@ Existem alguns arquivos docker necessários para preparar o cenário para os nos
 
 3. **docker-compose-integration.xml**: Será utilizado para manter o serviço Todo e executar nossos testes de integração consumindo o serviço:
 
-Para executar basta clonar o repositorio e executar o arquivo .bat (initialize.bat)
+Para executar basta clonar o repositorio e executar o arquivo .bat (./scripts/initialize.bat) ou executar o comando na pasta do projeto onde está o arquivo docker-compose-integration.yml:
 
-Após realizar esse processo o projeto começara a criar o container, copiar o projeto, restaurar as depedências e executar o teste.
+docker-compose -f ../docker-compose-integration.yml up
+
+Após realizar executar esse comando o projeto começara a criar o container, copiar o projeto, restaurar as depedências e executar o teste.
+
+****** Atenção *******
+
+O script delete_all_containers.bat so deve ser utilizado caso você queira apagar todos os containers docker que você tiver no seu computador, então use com sabedoria.
+
+
+
